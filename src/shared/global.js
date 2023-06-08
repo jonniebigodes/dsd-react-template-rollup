@@ -1,5 +1,5 @@
-import { Global, css } from "@emotion/react";
-import { color, typography } from "./styles";
+import { Global, css } from '@emotion/react';
+import { color, typography } from './styles';
 
 export const bodyStyles = css`
   font-family: ${typography.type.primary};
