@@ -1,7 +1,7 @@
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { Icon } from "./Icon";
-import { icons } from "./shared/icons";
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import { Icon } from './Icon';
+import { icons } from './shared/icons';
 
 const Meta = styled.div`
   color: #666;
@@ -48,7 +48,7 @@ const List = styled.ul`
 `;
 
 export default {
-  title: "Design System/Icon",
+  title: 'Design System/Icon',
   component: Icon,
 };
 
@@ -69,7 +69,7 @@ export const Labels = {
 };
 
 export const NoLabels = {
-  name: "no labels",
+  name: 'no labels',
   render: () => (
     <List>
       {Object.keys(icons).map((key) => (
@@ -88,8 +88,8 @@ export const Inline = {
     </>
   ),
   args: {
-    icon: "facehappy",
-    "aria-label": "Happy face",
+    icon: 'facehappy',
+    'aria-label': 'Happy face',
   },
 };
 
@@ -100,8 +100,8 @@ export const Block = {
     </>
   ),
   args: {
-    icon: "facehappy",
-    "aria-label": "Happy face",
+    icon: 'facehappy',
+    'aria-label': 'Happy face',
     block: true,
   },
 };

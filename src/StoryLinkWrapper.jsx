@@ -1,9 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 // This is allows us to test whether the link works via the actions addon
-import PropTypes from "prop-types";
-import { action } from "@storybook/addon-actions";
+import PropTypes from 'prop-types';
+import { action } from '@storybook/addon-actions';
 
-const fireClickAction = action("onLinkClick");
+const fireClickAction = action('onLinkClick');
 
 export function StoryLinkWrapper({
   children,
@@ -41,7 +41,7 @@ StoryLinkWrapper.propTypes = {
 };
 
 StoryLinkWrapper.defaultProps = {
-  className: "",
+  className: '',
   href: null,
   onClick: () => {},
   to: null,

@@ -1,9 +1,9 @@
-import { Fragment } from "react";
-import PropTypes from "prop-types";
-import styled from "@emotion/styled";
-import { darken, rgba } from "polished";
-import { color, typography } from "./shared/styles";
-import { easing } from "./shared/animation";
+import { forwardRef } from 'react';
+import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
+import { darken, rgba } from 'polished';
+import { color, typography } from './shared/styles';
+import { easing } from './shared/animation';
 
 const Text = styled.span`
   display: inline-block;
@@ -19,17 +19,17 @@ const Loading = styled.span`
 `;
 
 const APPEARANCES = {
-  PRIMARY: "primary",
-  PRIMARY_OUTLINE: "primaryOutline",
-  SECONDARY: "secondary",
-  SECONDARY_OUTLINE: "secondaryOutline",
-  TERTIARY: "tertiary",
-  OUTLINE: "outline",
+  PRIMARY: 'primary',
+  PRIMARY_OUTLINE: 'primaryOutline',
+  SECONDARY: 'secondary',
+  SECONDARY_OUTLINE: 'secondaryOutline',
+  TERTIARY: 'tertiary',
+  OUTLINE: 'outline',
 };
 
 const SIZES = {
-  SMALL: "small",
-  MEDIUM: "medium",
+  SMALL: 'small',
+  MEDIUM: 'medium',
 };
 
 const StyledButton = styled.button`
@@ -39,7 +39,7 @@ const StyledButton = styled.button`
   display: inline-block;
   overflow: hidden;
   padding: ${(props) =>
-    props.size === SIZES.SMALL ? "8px 16px" : "13px 20px"};
+    props.size === SIZES.SMALL ? '8px 16px' : '13px 20px'};
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -89,12 +89,12 @@ const StyledButton = styled.button`
   }
 
   svg {
-    height: ${(props) => (props.size === SIZES.SMALL ? "14" : "16")}px;
-    width: ${(props) => (props.size === SIZES.SMALL ? "14" : "16")}px;
+    height: ${(props) => (props.size === SIZES.SMALL ? '14' : '16')}px;
+    width: ${(props) => (props.size === SIZES.SMALL ? '14' : '16')}px;
     vertical-align: top;
-    margin-right: ${(props) => (props.size === SIZES.SMALL ? "4" : "6")}px;
-    margin-top: ${(props) => (props.size === SIZES.SMALL ? "-1" : "-2")}px;
-    margin-bottom: ${(props) => (props.size === SIZES.SMALL ? "-1" : "-2")}px;
+    margin-right: ${(props) => (props.size === SIZES.SMALL ? '4' : '6')}px;
+    margin-top: ${(props) => (props.size === SIZES.SMALL ? '-1' : '-2')}px;
+    margin-bottom: ${(props) => (props.size === SIZES.SMALL ? '-1' : '-2')}px;
 
     /* Necessary for js mouse events to not glitch out when hovering on svgs */
     pointer-events: none;
@@ -149,7 +149,7 @@ const StyledButton = styled.button`
         display: block;
         margin: 0;
       }
-      padding: ${props.size === SIZES.SMALL ? "7" : "12"}px;
+      padding: ${props.size === SIZES.SMALL ? '7' : '12'}px;
     `}
 
   ${(props) =>
@@ -249,13 +249,13 @@ const StyledButton = styled.button`
           &:focus {
             box-shadow: ${color.medium} 0 0 0 1px inset, ${rgba(
           color.secondary,
-          0.4
+          0.4,
         )} 0 1px 9px 2px;
           }
           &:focus:hover {
             box-shadow: ${color.medium} 0 0 0 1px inset, ${rgba(
           color.secondary,
-          0.2
+          0.2,
         )} 0 8px 18px 0px;
           }
         `
@@ -281,13 +281,13 @@ const StyledButton = styled.button`
         &:focus {
           box-shadow: ${color.primary} 0 0 0 1px inset, ${rgba(
       color.primary,
-      0.4
+      0.4,
     )} 0 1px 9px 2px;
         }
         &:focus:hover {
           box-shadow: ${color.primary} 0 0 0 1px inset, ${rgba(
       color.primary,
-      0.2
+      0.2,
     )} 0 8px 18px 0px;
         }
       `};
@@ -319,53 +319,60 @@ const StyledButton = styled.button`
       `};
 `;
 
-const ButtonLink = StyledButton.withComponent("a");
+const ButtonLink = styled.a``;
 
-const applyStyle = (ButtonWrapper) => {
-  return (
-    ButtonWrapper &&
-    StyledButton.withComponent(
-      ({ containsIcon, isLoading, isUnclickable, ...rest }) => (
-        <ButtonWrapper {...rest} />
-      )
-    )
-  );
-};
-
-export function Button({
-  isDisabled,
-  isLoading,
-  loadingText,
-  isLink,
-  children,
-  ButtonWrapper,
-  ...props
-}) {
-  const buttonInner = (
-    <Fragment>
-      <Text>{children}</Text>
-      {isLoading && <Loading>{loadingText || "Loading..."}</Loading>}
-    </Fragment>
-  );
-
-  const StyledButtonWrapper = React.useMemo(
-    () => applyStyle(ButtonWrapper),
-    [ButtonWrapper]
-  );
-
-  let SelectedButton = StyledButton;
+export const Button = forwardRef(function Button(
+  {
+    isDisabled,
+    isLoading,
+    loadingText,
+    isLink,
+    children,
+    ButtonWrapper,
+    ...props
+  },
+  ref,
+) {
   if (ButtonWrapper) {
-    SelectedButton = StyledButtonWrapper;
-  } else if (isLink) {
-    SelectedButton = ButtonLink;
+    return (
+      <StyledButton
+        as={ButtonWrapper}
+        disabled={isDisabled}
+        isLoading={isLoading}
+        {...props}
+        ref={ref}
+      >
+        <>
+          <Text>{children}</Text>
+          {isLoading && <Loading>{loadingText || 'Loading...'}</Loading>}
+        </>
+      </StyledButton>
+    );
   }
-
+  if (isLink) {
+    return (
+      <StyledButton as={ButtonLink} isLoading={isLoading} {...props} ref={ref}>
+        <>
+          <Text>{children}</Text>
+          {isLoading && <Loading>{loadingText || 'Loading...'}</Loading>}
+        </>
+      </StyledButton>
+    );
+  }
   return (
-    <SelectedButton isLoading={isLoading} disabled={isDisabled} {...props}>
-      {buttonInner}
-    </SelectedButton>
+    <StyledButton
+      disabled={isDisabled}
+      isLoading={isLoading}
+      {...props}
+      ref={ref}
+    >
+      <>
+        <Text>{children}</Text>
+        {isLoading && <Loading>{loadingText || 'Loading...'}</Loading>}
+      </>
+    </StyledButton>
   );
-}
+});
 
 Button.propTypes = {
   /**

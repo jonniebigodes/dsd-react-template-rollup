@@ -1,9 +1,9 @@
-import styled from "@emotion/styled";
-import { action } from "@storybook/addon-actions";
+import styled from '@emotion/styled';
+import { action } from '@storybook/addon-actions';
 
-import { Icon } from "./Icon";
-import { Link } from "./Link";
-import { StoryLinkWrapper } from "./StoryLinkWrapper";
+import { Icon } from './Icon';
+import { Link } from './Link';
+import { StoryLinkWrapper } from './StoryLinkWrapper';
 
 const CustomLink = styled(Link)`
   && {
@@ -11,49 +11,49 @@ const CustomLink = styled(Link)`
   }
 `;
 
-const onLinkClick = action("onLinkClick");
+const onLinkClick = action('onLinkClick');
 
 export default {
-  title: "Design System/Link",
+  title: 'Design System/Link',
   component: Link,
 };
 
 export const ALL = {
   render: () => (
     <div>
-      <Link href="https://storybook.js.org/tutorials/">Default</Link>
+      <Link href='https://storybook.js.org/tutorials/'>Default</Link>
       <br />
-      <Link secondary href="https://storybook.js.org/tutorials/">
+      <Link secondary href='https://storybook.js.org/tutorials/'>
         Secondary
       </Link>
       <br />
-      <Link tertiary href="https://storybook.js.org/tutorials/">
+      <Link tertiary href='https://storybook.js.org/tutorials/'>
         tertiary
       </Link>
       <br />
-      <Link nochrome href="https://storybook.js.org/tutorials/">
+      <Link nochrome href='https://storybook.js.org/tutorials/'>
         nochrome
       </Link>
       <br />
-      <Link href="https://storybook.js.org/tutorials/">
-        <Icon icon="discord" aria-hidden />
+      <Link href='https://storybook.js.org/tutorials/'>
+        <Icon icon='discord' aria-hidden />
         With icon in front
       </Link>
       <br />
       <Link
         containsIcon
-        href="https://storybook.js.org/tutorials/"
-        aria-label="Toggle side bar"
+        href='https://storybook.js.org/tutorials/'
+        aria-label='Toggle side bar'
       >
-        <Icon icon="sidebar" aria-hidden />
+        <Icon icon='sidebar' aria-hidden />
       </Link>
       <br />
-      <Link containsIcon withArrow href="https://storybook.js.org/tutorials/">
+      <Link containsIcon withArrow href='https://storybook.js.org/tutorials/'>
         With arrow behind
       </Link>
       <br />
-      <span style={{ background: "#333" }}>
-        <Link inverse href="https://storybook.js.org/tutorials/">
+      <span style={{ background: '#333' }}>
+        <Link inverse href='https://storybook.js.org/tutorials/'>
           Inverted colors
         </Link>
       </span>
@@ -67,7 +67,7 @@ export const ALL = {
       <Link
         tertiary
         LinkWrapper={StoryLinkWrapper}
-        href="http://storybook.js.org"
+        href='http://storybook.js.org'
       >
         has a LinkWrapper like GatsbyLink or NextLink
       </Link>
@@ -75,7 +75,7 @@ export const ALL = {
       <CustomLink
         tertiary
         LinkWrapper={StoryLinkWrapper}
-        href="http://storybook.js.org"
+        href='http://storybook.js.org'
       >
         has a LinkWrapper like GatsbyLink or NextLink with custom styling
       </CustomLink>
