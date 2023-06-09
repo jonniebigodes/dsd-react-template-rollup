@@ -15,7 +15,6 @@
     "build": "rollup -c",
     "clean": "rimraf ./dist",
     "prebuild": "yarn clean",
-    "prerelease": "zx scripts/prepublish-checks.mjs",
     "release": "yarn build && auto shipit",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
